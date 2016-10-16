@@ -11,8 +11,8 @@ import java.sql.SQLException;
 /**
  * Created by roman.loyko on 13-Oct-16.
  */
-public abstract class AbstractDao {
-    private final Logger logger = LoggerFactory.getLogger(AbstractDao.class);
+public abstract class ApplicationDao {
+    private final Logger logger = LoggerFactory.getLogger(ApplicationDao.class);
 
     @Inject
     protected DataSource dataSource;

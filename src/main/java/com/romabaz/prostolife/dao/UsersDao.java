@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by roman.loyko on 13-Oct-16.
  */
-public class UsersDao extends AbstractDao {
+public class UsersDao extends ApplicationDao {
     private final Logger log = LoggerFactory.getLogger(UsersDao.class);
 
     public List<User> getAllUsers() throws DaoException {

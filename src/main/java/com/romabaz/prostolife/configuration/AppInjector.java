@@ -2,8 +2,6 @@ package com.romabaz.prostolife.configuration;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
-import com.romabaz.prostolife.dao.AbstractDao;
-import com.romabaz.prostolife.dao.UsersDao;
 
 import javax.sql.DataSource;
 

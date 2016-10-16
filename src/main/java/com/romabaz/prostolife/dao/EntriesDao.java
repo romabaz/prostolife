@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by roman.loyko on 13-Oct-16.
  */
-public class EntriesDao extends AbstractDao {
+public class EntriesDao extends ApplicationDao {
     private final Logger log = LoggerFactory.getLogger(EntriesDao.class);
     public EntriesDao() throws DaoException {
         super();

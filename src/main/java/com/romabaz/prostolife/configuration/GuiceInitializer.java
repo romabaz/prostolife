@@ -2,6 +2,7 @@ package com.romabaz.prostolife.configuration;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.romabaz.prostolife.dao.UsersDao;
 
 import java.util.ResourceBundle;
 
@@ -14,6 +15,7 @@ public class GuiceInitializer {
     public static void init() {
         ResourceBundle resources = ResourceBundle.getBundle("database");
         String jndiName = resources.getString("db-jndi");
-        Guice.createInjector(new AppInjector(jndiName));
+        Injector injector = Guice.createInjector(new AppInjector(jndiName));
+        injector.getInstance(UsersDao.class);
     }
 }

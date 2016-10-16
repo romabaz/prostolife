@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+    <Resource auth="Container" driverClassName="net.sourceforge.jtds.jdbc.Driver"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              maxActive="10"
+              maxIdle="2"
+              maxWait="15000"
+              minEvictableIdleTimeMillis="600000"
+              name="${db-jndi}"
+              password="bmcAdm1n"
+              testWhileIdle="true"
+              timeBetweenEvictionRunsMillis="300000"
+              type="javax.sql.DataSource"
+              url="jdbc:jtds:sqlserver://127.0.0.1:1433/prostolife;instance=SQLEXPRESS"
+              username="sa"
+              validationInterval="30000"
+              validationQuery="SELECT 1"/>
+</Context>

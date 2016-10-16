@@ -1,0 +1,3 @@
+CREATE TABLE Users (Name VARCHAR(30) not NULL, Email VARCHAR(50), Phone VARCHAR(30), Username VARCHAR(30) not NULL, Password VARCHAR(255) not NULL, Avatar VARCHAR(50), CONSTRAINT users_pk PRIMARY KEY (Username));
+CREATE TABLE Entries (Id VARCHAR(64) NOT NULL, Topic VARCHAR(30), Text VARCHAR(max), Author VARCHAR(30) not NULL, CreateDate INTEGER not NULL, CONSTRAINT entries_pk PRIMARY KEY (Id));
+CREATE TABLE Comments (Id VARCHAR(64) NOT NULL, Author VARCHAR(30) not NULL, CreateDate INTEGER not NULL, Text VARCHAR(max) not NULL, CONSTRAINT comments_pk PRIMARY KEY (Id));

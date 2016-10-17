@@ -1,8 +1,5 @@
 package com.romabaz.prostolife.servlet;
 
-import com.google.inject.Inject;
-import com.romabaz.prostolife.dao.DaoException;
-import com.romabaz.prostolife.dao.UsersDao;
 import com.romabaz.prostolife.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,19 +14,21 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name="UsersServlet", urlPatterns = "/users")
 public class UsersServlet extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(UsersServlet.class);
+    private static final Logger logger = LoggerFactory.getLogger(UsersServlet.class);
 
-    @Inject
-    private UserService userService;
+    private static transient UserService userService;
 
-    @Override
-    public void init() {
-        userService = (UserService) getServletContext().getAttribute("usersvc");
+    private static UserService obtainUserService() {
+        if (userService == null) {
+            userService = new UserService();
+        }
+        return userService;
     }
 
     @Override
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) {
-        userService.getAllUsers();
+        logger.debug("Incoming request from {}", request.getRequestURI());
+        obtainUserService().getAllUsers();
     }
 }

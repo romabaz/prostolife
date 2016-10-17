@@ -1,11 +1,11 @@
 USE [prostolife]
 GO
 
-/****** Object:  Table [dbo].[Entries]    Script Date: 12-Oct-16 10:44:45 ******/
-DROP TABLE [dbo].[Entries]
+/****** Object:  Table [dbo].[Comments]    Script Date: 17-Oct-16 22:22:11 ******/
+DROP TABLE [dbo].[Comments]
 GO
 
-/****** Object:  Table [dbo].[Entries]    Script Date: 12-Oct-16 10:44:45 ******/
+/****** Object:  Table [dbo].[Comments]    Script Date: 17-Oct-16 22:22:11 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,14 +15,12 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[Entries](
-	[Topic] [varchar](30) NULL,
-	[Text] [varchar](max) NULL,
-	[Img] [varchar](50) NULL,
-	[CreateDate] [integer] NULL,
-	[Author] [varchar](30) NULL,
+CREATE TABLE [dbo].[Comments](
 	[Id] [varchar](64) NOT NULL,
- CONSTRAINT [PK_Entries] PRIMARY KEY CLUSTERED 
+	[Author] [varchar](30) NOT NULL,
+	[CreateDate] [int] NOT NULL,
+	[Text] [varchar](max) NOT NULL,
+ CONSTRAINT [PK_Comments] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -32,5 +30,3 @@ GO
 
 SET ANSI_PADDING OFF
 GO
-
-

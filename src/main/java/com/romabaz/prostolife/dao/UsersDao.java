@@ -1,6 +1,5 @@
 package com.romabaz.prostolife.dao;
 
-import com.google.inject.Inject;
 import com.romabaz.prostolife.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,17 +15,14 @@ import java.util.List;
 /**
  * Created by roman.loyko on 13-Oct-16.
  */
-public class UsersDao {
-    private final Logger log = LoggerFactory.getLogger(UsersDao.class);
-    @Inject
-    protected DataSource dataSource;
+public class UsersDao extends ApplicationDao {
+    private final Logger logger = LoggerFactory.getLogger(UsersDao.class);
 
-    protected Connection getConnection() throws SQLException {
-        Connection connection = dataSource.getConnection();
-        connection.setAutoCommit(true);
-        log.debug("Connection retrieved successfully");
-        return connection;
+    public UsersDao(DataSource dataSource) {
+        super(dataSource);
     }
+
+
     public List<User> getAllUsers() throws DaoException {
         final List<User> users = new ArrayList<>();
         ResultSet rs = null;
@@ -40,21 +36,21 @@ public class UsersDao {
             while (rs.next()) {
                 username = rs.getString("Username");
                 email = rs.getString("Email");
-                log.debug(String.format("User: %-15s %s", username, email));
+                logger.debug(String.format("User: %-15s %s", username, email));
                 user = new User();
                 user.setUsername(username);
                 user.setEmail(email);
                 users.add(user);
             }
         } catch (SQLException e) {
-            log.error("Error retrieving users", e);
+            logger.error("Error retrieving users", e);
             throw new DaoException("Error retrieving users", e);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    log.error("Error closing result set", e);
+                    logger.error("Error closing result set", e);
                 }
             }
         }

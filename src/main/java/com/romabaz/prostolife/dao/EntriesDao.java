@@ -4,6 +4,7 @@ import com.romabaz.prostolife.model.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,9 +16,10 @@ import java.util.List;
  * Created by roman.loyko on 13-Oct-16.
  */
 public class EntriesDao extends ApplicationDao {
-    private final Logger log = LoggerFactory.getLogger(EntriesDao.class);
-    public EntriesDao() throws DaoException {
-        super();
+    private final Logger logger = LoggerFactory.getLogger(EntriesDao.class);
+
+    public EntriesDao(DataSource dataSource) {
+        super(dataSource);
     }
 
     public List<Entry> getAllEntries() throws DaoException {
@@ -33,21 +35,21 @@ public class EntriesDao extends ApplicationDao {
             while (rs.next()) {
                 topic = rs.getString("Topic");
                 text = rs.getString("Text");
-                log.debug(String.format("User: %-15s %s", topic, text));
+                logger.debug(String.format("User: %-15s %s", topic, text));
                 entry = new Entry();
                 entry.setTopic(topic);
                 entry.setText(text);
                 entries.add(entry);
             }
         } catch (SQLException e) {
-            log.error("Error retrieving blog entries", e);
+            logger.error("Error retrieving blog entries", e);
             throw new DaoException("Error retrieving blog entries", e);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    log.error("Error closing result set", e);
+                    logger.error("Error closing result set", e);
                 }
             }
         }

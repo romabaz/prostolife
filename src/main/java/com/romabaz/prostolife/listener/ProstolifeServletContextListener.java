@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebListener;
 public class ProstolifeServletContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        GuiceInitializer.init();
+        sce.getServletContext().setAttribute("usersvc", GuiceInitializer.init());
     }
 
     @Override

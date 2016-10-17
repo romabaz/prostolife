@@ -1,9 +1,11 @@
 package com.romabaz.prostolife.dao;
 
+import com.google.inject.Inject;
 import com.romabaz.prostolife.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,9 +16,17 @@ import java.util.List;
 /**
  * Created by roman.loyko on 13-Oct-16.
  */
-public class UsersDao extends ApplicationDao {
+public class UsersDao {
     private final Logger log = LoggerFactory.getLogger(UsersDao.class);
+    @Inject
+    protected DataSource dataSource;
 
+    protected Connection getConnection() throws SQLException {
+        Connection connection = dataSource.getConnection();
+        connection.setAutoCommit(true);
+        log.debug("Connection retrieved successfully");
+        return connection;
+    }
     public List<User> getAllUsers() throws DaoException {
         final List<User> users = new ArrayList<>();
         ResultSet rs = null;

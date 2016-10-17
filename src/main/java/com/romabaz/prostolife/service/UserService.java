@@ -1,5 +1,6 @@
 package com.romabaz.prostolife.service;
 
+import com.google.inject.Inject;
 import com.romabaz.prostolife.dao.DaoException;
 import com.romabaz.prostolife.dao.UsersDao;
 import com.romabaz.prostolife.model.User;
@@ -14,11 +15,9 @@ import java.util.List;
  */
 public class UserService implements Service {
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
-    private UsersDao usersDao;
 
-    public UserService() {
-            usersDao = new UsersDao();
-    }
+    @Inject
+    private UsersDao usersDao;
 
     public List<User> getAllUsers() {
         try {

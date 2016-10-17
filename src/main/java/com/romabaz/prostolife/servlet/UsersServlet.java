@@ -1,5 +1,8 @@
 package com.romabaz.prostolife.servlet;
 
+import com.google.inject.Inject;
+import com.romabaz.prostolife.dao.DaoException;
+import com.romabaz.prostolife.dao.UsersDao;
 import com.romabaz.prostolife.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 public class UsersServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(UsersServlet.class);
 
+    @Inject
     private UserService userService;
 
     @Override
     public void init() {
-        userService = new UserService();
+        userService = (UserService) getServletContext().getAttribute("usersvc");
     }
 
     @Override

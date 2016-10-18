@@ -16,7 +16,7 @@ import java.util.Properties;
 public class DatabaseFactory {
     private static Logger logger = LoggerFactory.getLogger(DatabaseFactory.class);
 
-    private static DatabaseFactory instance;
+    private static volatile DatabaseFactory instance;
     private static DataSource dataSource;
 
     private volatile UsersDao usersDao;

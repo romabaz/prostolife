@@ -16,17 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 public class UsersServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(UsersServlet.class);
 
-    private static transient volatile UserService userService;
-
-    private static UserService obtainUserService() {
-        if (userService == null) {
-            synchronized (UsersServlet.class) {
-                if (userService == null) {
-                    userService = new UserService();
-                }
-            }
-        }
-        return userService;
+    private UserService obtainUserService() {
+        return new UserService();
     }
 
     @Override

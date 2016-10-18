@@ -16,21 +16,17 @@ import java.util.List;
 public class UserService {
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    private UsersDao usersDao;
-
-    public UserService() {
+    private UsersDao obtainUsersDao() {
         try {
-            usersDao = obtainUsersDao();
+            return DatabaseFactory.getInstance().getUsersDao();
         } catch (DaoException e) {
-            logger.error("Failed to obtain users dao", e);
+            logger.error("Failed to obtain usersDao instance", e);
         }
-    }
-
-    private UsersDao obtainUsersDao() throws DaoException {
-        return DatabaseFactory.getInstance().getUsersDao();
+        return null;
     }
 
     public List<User> getAllUsers() {
+        UsersDao usersDao = obtainUsersDao();
         try {
             if (usersDao != null) {
                 return usersDao.getAllUsers();

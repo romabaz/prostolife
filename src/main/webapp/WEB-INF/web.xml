@@ -4,4 +4,29 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
+    <servlet>
+        <servlet-name>UsersServlet</servlet-name>
+        <servlet-class>com.romabaz.prostolife.servlet.UsersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentsServlet</servlet-name>
+        <servlet-class>com.romabaz.prostolife.servlet.CommentsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EntriesServlet</servlet-name>
+        <servlet-class>com.romabaz.prostolife.servlet.EntriesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UsersServlet</servlet-name>
+        <url-pattern>/users/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentsServlet</servlet-name>
+        <url-pattern>/entry/*/comments/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EntriesServlet</servlet-name>
+        <url-pattern>/entries/*</url-pattern>
+    </servlet-mapping>
 </web-app>

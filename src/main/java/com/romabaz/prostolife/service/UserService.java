@@ -34,6 +34,8 @@ public class UserService {
         try {
             if (usersDao != null) {
                 return usersDao.getAllUsers();
+            } else {
+                logger.error("Users Dao is null. No database access");
             }
         } catch (DaoException e) {
             logger.error("Failed to get all users", e);

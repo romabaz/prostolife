@@ -16,11 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 public class UsersServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(UsersServlet.class);
 
-    private static transient UserService userService;
+    private static transient volatile UserService userService;
 
     private static UserService obtainUserService() {
         if (userService == null) {
-            userService = new UserService();
+            synchronized (UsersServlet.class) {
+                if (userService == null) {
+                    userService = new UserService();
+                }
+            }
         }
         return userService;
     }

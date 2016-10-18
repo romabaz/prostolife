@@ -19,9 +19,9 @@ public class DatabaseFactory {
     private static DatabaseFactory instance;
     private static DataSource dataSource;
 
-    private UsersDao usersDao;
-    private EntriesDao entriesDao;
-    private CommentsDao commentsDao;
+    private volatile UsersDao usersDao;
+    private volatile EntriesDao entriesDao;
+    private volatile CommentsDao commentsDao;
 
     private DatabaseFactory() throws DaoException {
         Properties properties = new PropertiesLoader().load(Constants.DB_PROP_FILE);
@@ -47,21 +47,33 @@ public class DatabaseFactory {
 
     public UsersDao getUsersDao() {
         if (usersDao == null) {
-            usersDao = new UsersDao(dataSource);
+            synchronized (this) {
+                if (usersDao == null) {
+                    usersDao = new UsersDao(dataSource);
+                }
+            }
         }
         return usersDao;
     }
 
     public EntriesDao getEntriesDao() {
         if (entriesDao == null) {
-            entriesDao = new EntriesDao(dataSource);
+            synchronized (this) {
+                if (entriesDao == null) {
+                    entriesDao = new EntriesDao(dataSource);
+                }
+            }
         }
         return entriesDao;
     }
 
     public CommentsDao getCommentsDao() {
         if (commentsDao == null) {
-            commentsDao = new CommentsDao(dataSource);
+            synchronized (this) {
+                if (commentsDao == null) {
+                    commentsDao = new CommentsDao(dataSource);
+                }
+            }
         }
         return commentsDao;
     }

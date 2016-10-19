@@ -20,3 +20,20 @@
     margin-left: 100px;
     margin-top: 15px;
 }
+
+#blogEntriesWrapper {
+	width: 100%;
+	padding: 10px;
+}
+
+#blogEntriesWrapper .entry {
+	border: 1px solid gray;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+#blogEntriesWrapper .entry-details {
+	border: 1px solid gray;
+	padding: 10px;
+	margin-bottom: 10px;
+}

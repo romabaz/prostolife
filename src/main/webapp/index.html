@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="prostolife">
 <head>
     <meta charset="UTF-8">
     <title>Prostolife</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap337.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="angular158.min.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
-    <p>Welcome to prostolife, we are ready to rock</p>
+    <div id="header-wrapper" ng-controller="HeaderCtrl">
+        <span class="logo pull-left">{{appDetails.title}}</span>
+        <span class="tagline pull-left">{{appDetails.tagline}}</span>
+        <div class="nav-wrapper pull-left">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#">Blog</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

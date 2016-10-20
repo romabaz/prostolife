@@ -9,27 +9,38 @@
     <script src="app.js"></script>
 </head>
 <body>
-    <div id="header-wrapper" ng-controller="HeaderCtrl">
-        <span class="logo pull-left">{{appDetails.title}}</span>
-        <span class="tagline pull-left">{{appDetails.tagline}}</span>
-        <div class="nav-wrapper pull-left">
-            <ul class="nav nav-pills">
-                <li class="active"><a href="#">Blog</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Webcast room</a></li>
-                <li><a href="#">About</a></li>
+    <div class="container-fluid">
+        <div class = "row" id="header-wrapper" ng-controller="HeaderCtrl">
+            <span class="logo pull-left">{{appDetails.title}}</span>
+            <span class="tagline pull-left">{{appDetails.tagline}}</span>
+            <div class="nav-wrapper pull-left">
+                <ul class="nav nav-pills">
+                    <li class="active"><a href="#">Blog</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Webcast room</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="blogEntriesWrapper" ng-controller="BlogCtrl">
+            <ul class="list-unstyled">
+                <li ng-repeat="entry in entries">
+                    <div class="row blogrow">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                {{entry.topic}}
+                            </div>
+                            <div class="row">
+                                {{entry.text}}
+                            </div>
+                            <button class="btn btn-info pull-right" ng-click="readMore(entry)">More...</button>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </li>
             </ul>
         </div>
-    </div>
-    <div id="blogEntriesWrapper">
-        <ul class="list-unstyled">
-            <li class="entry" style="background: white no-repeat">
-                <div class="entry-details clearfix">
-                    Just some static text
-                    <button class="btn btn-info pull-right" ng-click="readMore(entry)">More...</button>
-                </div>
-            </li>
-        </ul>
     </div>
 </body>
 </html>

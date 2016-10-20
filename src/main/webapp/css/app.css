@@ -26,14 +26,7 @@
 	padding: 10px;
 }
 
-#blogEntriesWrapper .entry {
-	border: 1px solid gray;
-	padding: 10px;
-	margin-bottom: 10px;
-}
-
-#blogEntriesWrapper .entry-details {
-	border: 1px solid gray;
-	padding: 10px;
-	margin-bottom: 10px;
+.blogrow {
+  margin-top: 20px;
+  margin-bottom: 20px
 }
